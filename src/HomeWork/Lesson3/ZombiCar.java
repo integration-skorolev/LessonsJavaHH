@@ -5,12 +5,48 @@ class ZombiCar extends Car implements Shootable, Armoredable, Sprayable {
   private int distance;
   private boolean isSavePeoples;
 
-  public ZombiCar(int distance, boolean isSavePeoples, int capacityFuelTank, int weight) {
-    this.distance = distance;
-    this.isSavePeoples = isSavePeoples;
-    this.capacityFuel = capacityFuelTank;
-    this.weight = weight;
+  private ZombiCar(ZombiCarBuilder zombiCarBuilder) {
+    this.distance = zombiCarBuilder.distance;
+    this.isSavePeoples = zombiCarBuilder.isSavePeoples;
+    this.capacityFuel = zombiCarBuilder.capacityFuel;
+    this.weight = zombiCarBuilder.weight;
   }
+
+  public static class ZombiCarBuilder {
+    private int distance;
+    private boolean isSavePeoples;
+
+    private int weight;
+    private int capacityFuel;
+
+    public ZombiCarBuilder() {
+    }
+
+    public ZombiCarBuilder setDistance(int distance) {
+      this.distance = distance;
+      return this;
+    }
+
+    public ZombiCarBuilder setIsSavePeoples(boolean isSavePeoples) {
+      this.isSavePeoples = isSavePeoples;
+      return this;
+    }
+
+    public ZombiCarBuilder setWeight(int weight) {
+      this.weight = weight;
+      return this;
+    }
+
+    public ZombiCarBuilder setCapacityFuel(int capacityFuel) {
+      this.capacityFuel = capacityFuel;
+      return this;
+    }
+
+    public ZombiCar build() {
+      return new ZombiCar(this);
+    }
+  }
+
 
   public void discoverNewCity() {
     if (isSavePeoples && distance > 100 && capacityFuel < 100 && weight > 3000) {

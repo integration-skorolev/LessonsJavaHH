@@ -1,24 +1,39 @@
 package HomeWork.Lesson3;
 
 class FireTruck extends Car implements Sprayable {
-  private static int amountOfWater;
+  private int amountOfWater;
   private boolean isHaveLongStaircase = false;
 
-  static {
-    amountOfWater = 1000;
+  private FireTruck(FireTruckBuilder fireTruckBuilder) {
+    this.amountOfWater = fireTruckBuilder.amountOfWater;
+    this.isHaveLongStaircase = fireTruckBuilder.isHaveLongStaircase;
   }
 
-  public FireTruck(int amountOfWater, boolean isHaveLongStaircase) {
-    this.amountOfWater = amountOfWater;
-    this.isHaveLongStaircase = isHaveLongStaircase;
+  public static class FireTruckBuilder {
+    private int amountOfWater;
+    private boolean isHaveLongStaircase = false;
+
+    public FireTruckBuilder() {
+    }
+
+    public FireTruckBuilder setAmountOfWater(int amountOfWater) {
+      this.amountOfWater = amountOfWater;
+      return this;
+    }
+
+    public FireTruckBuilder setIsHaveLongStaircase(boolean isHaveLongStaircase) {
+      this.isHaveLongStaircase = isHaveLongStaircase;
+      return this;
+    }
+
+    public FireTruck build() {
+      return new FireTruck(this);
+    }
   }
 
-  public FireTruck(boolean isHaveLongStaircase) {
-    this.isHaveLongStaircase = isHaveLongStaircase;
-  }
 
   public void putOutFire(FireTruck fireTruck) {
-    while (fireTruck.amountOfWater > 100) {
+    while (amountOfWater > 100) {
       sprayLiquid();
     }
     if (isHaveLongStaircase) {

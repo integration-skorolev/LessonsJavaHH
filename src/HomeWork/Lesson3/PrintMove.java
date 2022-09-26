@@ -21,8 +21,4 @@ public class PrintMove<T extends Car> extends Car {
     System.out.println("У этого класса - " + t.getClass().getName() + " - выглядит так: \r");
     t.move();
   }
-
-  public static void main(String[] args) {
-    new PrintMove<>(new Amphibian(1, 2, 4)).print();
-  }
 }

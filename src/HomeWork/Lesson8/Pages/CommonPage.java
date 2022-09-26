@@ -14,7 +14,7 @@ public class CommonPage extends BasePage {
   @FindBy(xpath = "//*[@id='inner-header-container']//*[@id='subscribe-button']")
   WebElement subscribeButton;
 
-  public String getTitleNameChannel(){
+  public String getTitleNameChannel() {
     return titleNameChannel.getText();
   }
 
@@ -22,10 +22,7 @@ public class CommonPage extends BasePage {
     return nameChannel;
   }
 
-  public String isCanSubscribe(){
-
-
-    System.out.println(subscribeButton.getText());
+  public String isCanSubscribe() {
     return subscribeButton.getText();
   }
 }
